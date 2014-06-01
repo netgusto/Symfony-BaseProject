@@ -3,7 +3,8 @@
 ## Install
 
 ```bash
-git clone https://github.com/netgusto/Symfony-BaseProject.git
+git clone https://github.com/netgusto/Symfony-BaseProject.git my-project-name
+cd my-project-name
 rm -Rf .git
 composer install
 php app/console assetic:dump
