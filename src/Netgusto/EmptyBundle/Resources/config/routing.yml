@@ -1,0 +1,3 @@
+netgusto_empty_homepage:
+    pattern:  /
+    defaults: { _controller: NetgustoEmptyBundle:Default:index }

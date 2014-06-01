@@ -1,0 +1,4 @@
+netgusto_empty:
+    resource: "@NetgustoEmptyBundle/Resources/config/routing.yml"
+    prefix:   /
+

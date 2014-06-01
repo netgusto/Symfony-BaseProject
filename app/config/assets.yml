@@ -1,0 +1,133 @@
+assetic:
+    assets:
+
+        #######################################################################
+        # Bootstrap 3 CSS + Fonts
+        #######################################################################
+
+        bootstrap_css:
+            inputs:
+                #- %kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less
+                - %kernel.root_dir%/Resources/sources/less/app.bootstrap.less
+            filters:
+                - lessphp
+                - cssrewrite
+            output: css/lib/app.bootstrap.css
+
+        bootstrap_override_css:
+            inputs:
+                - %kernel.root_dir%/Resources/sources/less/app.less
+            filters:
+                - lessphp
+                - cssrewrite
+            output: css/app.css
+
+        bootstrap_font_eot:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.eot
+            output: fonts/glyphicons-halflings-regular.eot
+
+        bootstrap_font_svg:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.svg
+            output: fonts/glyphicons-halflings-regular.svg
+
+        bootstrap_font_ttf:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.ttf
+            output: fonts/glyphicons-halflings-regular.ttf
+
+        bootstrap_font_woff:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.woff
+            output: fonts/glyphicons-halflings-regular.woff
+
+        #######################################################################
+        # FontAwesome CSS + Fonts
+        #######################################################################
+
+        fontawesome_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/fontawesome/fontawesome/css/font-awesome.css
+            filters:
+                - cssrewrite
+            output: css/lib/font-awesome.css
+
+        fontawesome_font_eot:
+            inputs:
+                - %kernel.root_dir%/../vendor/fontawesome/fontawesome/fonts/fontawesome-webfont.eot
+            output: fonts/fontawesome-webfont.eot
+
+        fontawesome_font_svg:
+            inputs:
+                - %kernel.root_dir%/../vendor/fontawesome/fontawesome/fonts/fontawesome-webfont.svg
+            output: fonts/fontawesome-webfont.svg
+
+        fontawesome_font_ttf:
+            inputs:
+                - %kernel.root_dir%/../vendor/fontawesome/fontawesome/fonts/fontawesome-webfont.ttf
+            output: fonts/fontawesome-webfont.ttf
+
+        fontawesome_font_woff:
+            inputs:
+                - %kernel.root_dir%/../vendor/fontawesome/fontawesome/fonts/fontawesome-webfont.woff
+            output: fonts/fontawesome-webfont.woff
+
+        #######################################################################
+        # Frontend JS
+        #######################################################################
+
+        bootstrap_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/button.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/dropdown.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/modal.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tooltip.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/popover.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/js/affix.js
+            filters:
+                #- uglifyjs
+            output: js/lib/bootstrap.js
+
+        modernizr_js:
+            inputs:
+                - "%kernel.root_dir%/../vendor/modernizr/modernizr/modernizr.min.js"
+            filters:
+                #- uglifyjs
+            output: js/lib/modernizr.js
+
+        jquery_js:
+            inputs:
+                - "%kernel.root_dir%/../vendor/jquery/jquery/jquery-2.1.0.min.js"
+            filters:
+                #- uglifyjs
+            output: js/lib/jquery.js
+
+        requirejs_js:
+            inputs:
+                - "%kernel.root_dir%/../vendor/requirejs/requirejs/require.js"
+            filters:
+                #- uglifyjs
+            output: js/lib/require.js
+
+        app_main_js:
+            inputs:
+                - %kernel.root_dir%/Resources/sources/coffee/app/main.coffee
+            filters:
+                - coffee
+                #- uglifyjs
+            output: js/app/main.js
+
+        app_somecomponent_js:
+            inputs:
+                - %kernel.root_dir%/Resources/sources/coffee/app/somecomponent.coffee
+            filters:
+                - coffee
+                #- uglifyjs
+            output: js/app/somecomponent.js
