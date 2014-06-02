@@ -1,0 +1,4 @@
+parameters:
+    appname: "Net Gusto's"
+    apphomeroute: netgusto_empty_homepage
+    apptitle: %appname%

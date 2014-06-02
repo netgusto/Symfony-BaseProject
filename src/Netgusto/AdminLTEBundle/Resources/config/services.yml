@@ -1,0 +1,14 @@
+parameters:
+#    netgusto_admin_lte.example.class: Netgusto\AdminLTEBundle\Example
+
+services:
+#    netgusto_admin_lte.example:
+#        class: %netgusto_admin_lte.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    netgusto_admin_lte.twig_menu_extension:
+        class: Netgusto\AdminLTEBundle\Twig\MenuExtension
+        arguments:
+            helper: @knp_menu.helper
+        tags:
+            - { name: twig.extension }

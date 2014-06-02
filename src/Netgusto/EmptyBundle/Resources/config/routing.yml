@@ -1,3 +1,7 @@
 netgusto_empty_homepage:
     pattern:  /
     defaults: { _controller: NetgustoEmptyBundle:Default:index }
+
+netgusto_empty_subpage:
+    pattern:  /subpage
+    defaults: { _controller: NetgustoEmptyBundle:Default:index }

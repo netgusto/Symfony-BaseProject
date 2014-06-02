@@ -18,6 +18,9 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Netgusto\DevServerBundle\NetgustoDevServerBundle(),
             new Netgusto\EmptyBundle\NetgustoEmptyBundle(),
+            new Netgusto\DistributionBundle\NetgustoDistributionBundle(),
+            new Netgusto\AdminLTEBundle\NetgustoAdminLTEBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: assets.yml }
+    - { resource: twig.yml }
 
 framework:
     #esi:             ~
@@ -24,11 +25,6 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
-
-# Twig Configuration
-twig:
-    debug:            "%kernel.debug%"
-    strict_variables: "%kernel.debug%"
 
 # Assetic Configuration
 assetic:
@@ -73,3 +69,10 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+netgusto_distribution:
+    assets_forwarding:
+        dest_dir: ~
+        packages:
+            - almasaeed2010/adminlte

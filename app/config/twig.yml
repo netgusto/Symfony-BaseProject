@@ -1,0 +1,9 @@
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+    globals:
+        appname: %appname%
+        apptitle: %apptitle%
+        apphomeroute: %apphomeroute%

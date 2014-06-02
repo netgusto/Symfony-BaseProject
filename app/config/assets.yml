@@ -14,7 +14,7 @@ assetic:
                 - cssrewrite
             output: css/lib/app.bootstrap.css
 
-        bootstrap_override_css:
+        app_css:
             inputs:
                 - %kernel.root_dir%/Resources/sources/less/app.less
             filters:
@@ -41,6 +41,26 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.woff
             output: fonts/glyphicons-halflings-regular.woff
+
+        #######################################################################
+        # Admin LTE 3 CSS
+        #######################################################################
+
+        adminlte_css:
+            inputs:
+                - %kernel.root_dir%/Resources/sources/less/admin.adminlte.less
+            filters:
+                - lessphp
+                - cssrewrite
+            output: css/lib/admin.adminlte.css
+
+        admin_css:
+            inputs:
+                - %kernel.root_dir%/Resources/sources/less/admin.less
+            filters:
+                - lessphp
+                - cssrewrite
+            output: css/admin.css
 
         #######################################################################
         # FontAwesome CSS + Fonts
@@ -123,6 +143,14 @@ assetic:
                 - coffee
                 #- uglifyjs
             output: js/app/main.js
+
+        admin_main_js:
+            inputs:
+                - %kernel.root_dir%/Resources/sources/coffee/admin/main.coffee
+            filters:
+                - coffee
+                #- uglifyjs
+            output: js/admin/main.js
 
         app_somecomponent_js:
             inputs:

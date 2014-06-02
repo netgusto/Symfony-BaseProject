@@ -28,10 +28,13 @@
         "twbs/bootstrap": ">=3.0",
         "fontawesome/fontawesome": ">=4.0.3",
 
+        "almasaeed2010/adminlte": "dev-master",
+
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "1.1.*@dev",
         "netgusto/devserver-bundle": "dev-master",
-        "netgusto/hmvc-bundle": "dev-master"
+        "netgusto/hmvc-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "v1.1.2"
     },
     "repositories": [
         {
@@ -77,6 +80,17 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "almasaeed2010/adminlte",
+                "version": "dev-master",
+                "dist": {
+                    "url": "https://github.com/almasaeed2010/AdminLTE/archive/master.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "scripts": {
@@ -85,14 +99,15 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Netgusto\\DistributionBundle\\Composer\\ScriptHandler::forwardAssetsToWebDir"
         ],
         "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Netgusto\\DistributionBundle\\Composer\\ScriptHandler::forwardAssetsToWebDir"
         ]
     },
     "config": {
