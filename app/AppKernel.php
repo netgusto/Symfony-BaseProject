@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Netgusto\DevServerBundle\NetgustoDevServerBundle(),
-            new Netgusto\EmptyBundle\NetgustoEmptyBundle(),
+            new Netgusto\DemoBundle\NetgustoDemoBundle(),
             new Netgusto\DistributionBundle\NetgustoDistributionBundle(),
             new Netgusto\AdminLTEBundle\NetgustoAdminLTEBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

@@ -18,12 +18,24 @@ class ForwardAssetsToWebDirCommand extends ContainerAwareCommand {
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
+        
+        $filesystem = $this->getContainer()->get('filesystem');
+
         $config = $this->getContainer()->getParameter('netgusto_distribution.assets_forwarding');
         $destDir = rtrim($config['dest_dir'], '/');
+        
+        if(!is_dir($destDir)) {
+            # Before realpath, as realpath expects the folder to exist
+            $filesystem->mkdir($destDir, 0777);
+        }
+
         $destDir = realpath($destDir) . '/';
 
-        $filesystem = $this->getContainer()->get('filesystem');
-        $filesystem->mkdir($destDir, 0777);
+        if(!is_dir($destDir)) {
+            die($destDir);
+            $filesystem->mkdir($destDir, 0777);
+            die($destDir);
+        }
 
         if(count($config['packages']) === 0) {
             $output->writeln('<comment>No package to forward was defined.</comment>');
@@ -45,7 +57,7 @@ class ForwardAssetsToWebDirCommand extends ContainerAwareCommand {
             // We use a custom iterator to ignore VCS files
             $filesystem->mirror($originDir, $targetDir, Finder::create()->ignoreDotFiles(false)->in($originDir));
 
-            $output->writeln('<info>Package\'s "' . $packagename . '" assets have been forwarded to web dir.</info>');
+            $output->writeln('<info>Package "' . $packagename . '" assets have been forwarded to web dir.</info>');
         }
     }
 }

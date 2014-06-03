@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% include '_partials/admin/head.html.twig' %}
+    </head>
+    <body class="bg-black">
+
+        <div class="form-box" id="login-box">
+            <div class="header">Sign In</div>
+            <form action="{{ path('netgusto_demo_login_check') }}" method="post">
+                <div class="body bg-gray">
+                    <div class="form-group">
+                        <input type="text" name="_username" class="form-control" placeholder="User ID" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="_password" class="form-control" placeholder="Password" />
+                    </div>          
+                    <!--div class="form-group">
+                        <input type="checkbox" name="remember_me"/> Remember me
+                    </div-->
+                </div>
+                <div class="footer">
+                    <button type="submit" class="btn bg-olive btn-block">Sign me in</button>  
+                    
+                    <p><a href="#">I forgot my password</a></p>
+                    
+                    <a href="register.html" class="text-center">Register a new membership</a>
+                </div>
+            </form>
+        </div>
+
+        {% include '_partials/admin/basejavascripts.html.twig' %}
+        
+        {% block javascripts %}
+        <script type="text/javascript">require(['admin/main']);</script>
+        {% endblock %}
+
+    </body>
+</html>

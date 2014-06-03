@@ -19,20 +19,26 @@ security:
             security: false
 
         login:
-            pattern:  ^/demo/secured/login$
-            security: false
+            pattern:  ^/login$
+            anonymous: ~
 
-        secured_area:
-            pattern:    ^/demo/secured/
+        # Page /admin/login is anonymously accessible
+        admin_login:
+            pattern: ^/admin/login$
+            anonymous: ~
+
+        admin:
+            pattern:    ^/admin
+
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                check_path: netgusto_demo_login_check
+                login_path: netgusto_demo_login_form
+
             logout:
-                path:   _demo_logout
-                target: _demo
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+                path:   netgusto_demo_logout
+                target: netgusto_demo_homepage
 
     access_control:
+        - { path: ^/admin/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

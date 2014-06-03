@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgusto\EmptyBundle\Menu;
+namespace Netgusto\DemoBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -12,12 +12,12 @@ class Builder extends ContainerAware {
         $menu = $factory->createItem('root', $options);
         $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
-        $menu->addChild('Users+Data', array('route' => 'netgusto_empty_homepage'))
+        $menu->addChild('Users+Data', array('route' => 'netgusto_demo_homepage'))
             ->setAttribute('icon', 'plane');
         $menu->addChild('Settings', array('uri' => '#'))
             ->setAttribute('icon', 'car');
 
-        $menu['Settings']->addChild('Subpage', array('route' => 'netgusto_empty_subpage'))
+        $menu['Settings']->addChild('Subpage', array('route' => 'netgusto_demo_subpage'))
             ->setAttribute('icon', 'rocket');
 
         return $menu;
