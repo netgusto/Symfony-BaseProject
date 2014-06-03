@@ -6,7 +6,7 @@
 git clone https://github.com/netgusto/Symfony-BaseProject.git my-project-name
 cd my-project-name
 rm -Rf .git
-composer install
+composer update
 php app/console assetic:dump
 ```
 
