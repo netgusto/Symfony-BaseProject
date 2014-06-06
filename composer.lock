@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "3cde75dca6881b7c33edb5c9d8946c5c",
+    "hash": "4fc3ff69bfe65e6b1315dabe38249aec",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1337,6 +1338,49 @@
             "time": "2014-06-01 09:22:25"
         },
         {
+            "name": "netgusto/distribution-bundle",
+            "version": "dev-master",
+            "target-dir": "Netgusto/DistributionBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netgusto/Symfony-DistributionBundle.git",
+                "reference": "75985e2590d6f176854274a1905f5822a1ac85a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netgusto/Symfony-DistributionBundle/zipball/75985e2590d6f176854274a1905f5822a1ac85a9",
+                "reference": "75985e2590d6f176854274a1905f5822a1ac85a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.4"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Netgusto\\DistributionBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Net Gusto",
+                    "email": "contact@netgusto.com"
+                }
+            ],
+            "description": "Symfony2 Project Distribution helper Bundle",
+            "homepage": "https://github.com/netgusto/Symfony-DistributionBundle",
+            "keywords": [
+                "distribution",
+                "symfony"
+            ],
+            "time": "2014-06-06 15:02:11"
+        },
+        {
             "name": "netgusto/hmvc-bundle",
             "version": "dev-master",
             "target-dir": "Netgusto/HMVCBundle",
@@ -1385,12 +1429,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "0007659321f500260a4b651223541321bbcb95c7"
+                "reference": "82372b389386ae1edab55495eae4b400cca3c86c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/0007659321f500260a4b651223541321bbcb95c7",
-                "reference": "0007659321f500260a4b651223541321bbcb95c7",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/82372b389386ae1edab55495eae4b400cca3c86c",
+                "reference": "82372b389386ae1edab55495eae4b400cca3c86c",
                 "shasum": ""
             },
             "require": {
@@ -1436,7 +1480,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2014-05-15 04:37:36"
+            "time": "2014-06-05 16:09:50"
         },
         {
             "name": "psr/log",
@@ -2264,6 +2308,7 @@
         "almasaeed2010/adminlte": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
+        "netgusto/distribution-bundle": 20,
         "netgusto/devserver-bundle": 20,
         "netgusto/hmvc-bundle": 20,
         "friendsofsymfony/user-bundle": 20

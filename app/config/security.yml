@@ -36,11 +36,11 @@ security:
 
             form_login:
                 provider: fos_userbundle
-                check_path: netgusto_demo_login_check
-                login_path: netgusto_demo_login_form
+                check_path: netgusto_adminlte_login_check
+                login_path: netgusto_adminlte_login_form
 
             logout:
-                path:   netgusto_demo_logout
+                path:   netgusto_adminlte_logout
                 target: netgusto_demo_homepage
 
     access_control:

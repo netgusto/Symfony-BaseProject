@@ -32,8 +32,11 @@
 
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "1.1.*@dev",
+
+        "netgusto/distribution-bundle": "dev-master",
         "netgusto/devserver-bundle": "dev-master",
         "netgusto/hmvc-bundle": "dev-master",
+        
         "knplabs/knp-menu-bundle": "v1.1.2",
         "friendsofsymfony/user-bundle": "dev-master"
     },

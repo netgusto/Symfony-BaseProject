@@ -5,19 +5,3 @@ netgusto_demo_homepage:
 netgusto_demo_subpage:
     pattern:  /subpage
     defaults: { _controller: NetgustoDemoBundle:Front:index }
-
-netgusto_demo_login_form:
-    pattern:  /admin/login
-    defaults: { _controller: NetgustoAdminLTEBundle:Login:index }
-
-netgusto_demo_login_check:
-    pattern: /admin/login_check
-    # no controller, symfony intercepts this
-
-netgusto_demo_logout:
-    pattern: /admin/logout
-    # no controller, symfony intercepts this
-
-netgusto_demo_admin_homepage:
-    pattern:  /admin
-    defaults: { _controller: NetgustoDemoBundle:Admin:index }
