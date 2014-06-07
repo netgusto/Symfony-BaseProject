@@ -4,47 +4,42 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.4",
+        "symfony/symfony": "2.5.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~2.3",
+        "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
+
+        "doctrine/doctrine-fixtures-bundle": ">=v2.2.0",
+        "stof/doctrine-extensions-bundle": "v1.1.0",
+
+        "oyejorge/less.php": "v1.7.0.2",
 
         "requirejs/requirejs": "2.1.11",
         "modernizr/modernizr": "2.7.1",
         "jquery/jquery": "2.1.0",
-
-        "oyejorge/less.php": "dev-master",
         "twbs/bootstrap": ">=3.0",
         "fontawesome/fontawesome": ">=4.0.3",
 
-        "almasaeed2010/adminlte": "dev-master",
-
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "stof/doctrine-extensions-bundle": "1.1.*@dev",
-
-        "netgusto/distribution-bundle": "dev-master",
+        "netgusto/adminlte-bundle": "1.0.4",
         "netgusto/devserver-bundle": "dev-master",
-        "netgusto/hmvc-bundle": "dev-master",
-        
-        "knplabs/knp-menu-bundle": "v1.1.2",
-        "friendsofsymfony/user-bundle": "dev-master"
+        "friendsofsymfony/user-bundle": "2.0.*@dev"
+
     },
     "repositories": [
         {
             "type": "package",
             "package": {
-              "name": "requirejs/requirejs",
+                "name": "requirejs/requirejs",
                 "version": "2.1.11",
                 "dist": {
                     "url": "http://requirejs.org/docs/release/2.1.11/minified/require.js",
@@ -84,26 +79,22 @@
                     "type": "zip"
                 }
             }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "almasaeed2010/adminlte",
-                "version": "dev-master",
-                "dist": {
-                    "url": "https://github.com/almasaeed2010/AdminLTE/archive/master.zip",
-                    "type": "zip"
-                }
-            }
         }
     ],
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3"
+    },
     "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Netgusto\\DistributionBundle\\Composer\\ScriptHandler::forwardAssetsToWebDir"
         ],
         "post-update-cmd": [
@@ -111,6 +102,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
             "Netgusto\\DistributionBundle\\Composer\\ScriptHandler::forwardAssetsToWebDir"
         ]
     },
@@ -120,12 +112,11 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-        "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.4-dev"
+            "dev-master": "2.5-dev"
         }
     }
 }

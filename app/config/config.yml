@@ -75,9 +75,9 @@ netgusto_distribution:
     assets_forwarding:
         dest_dir: ~
         packages:
-            - almasaeed2010/adminlte
+            - netgusto/adminlte
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: admin
-    user_class: Netgusto\DemoBundle\Entity\User
+    user_class: Netgusto\AdminLTEBundle\Entity\User
