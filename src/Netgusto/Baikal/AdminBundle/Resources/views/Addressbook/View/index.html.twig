@@ -1,0 +1,21 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Addressbook " ~ addressbook.getDisplayname() ~ " of " ~ user.uiLabel() %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa fa-book"></i> Addressbook {{ addressbook.getDisplayname() }} of <i class="fa fa-user"></i> {{ user.uiLabel() }}</h1>
+</div>
+<p>&nbsp;</p>
+
+<div class="container">
+
+    <h1>Addressbook !</h1>
+
+</div><!-- /.container -->
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+parameters:
+#    netgusto_baikal_dav_services.example.class: Netgusto\Baikal\DavServicesBundle\Example
+
+services:
+#    netgusto_baikal_dav_services.example:
+#        class: %netgusto_baikal_dav_services.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    netgusto_baikal_dav_services.sabredav_password_encoder:
+        class: Netgusto\Baikal\DavServicesBundle\Service\SabreDavPasswordEncoder

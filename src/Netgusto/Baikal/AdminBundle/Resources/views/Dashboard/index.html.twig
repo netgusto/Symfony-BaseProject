@@ -1,0 +1,105 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Dashboard" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1><i class="fa fa-dashboard"></i> Dashboard <small>Welcome</small></h1>
+</div>
+
+<section id="about">
+    <h3>About this system</h3>
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <h4>Version</h4>
+            <p>This systems runs Baïkal <span class="label label-info label-intext">{{ app_version }}-{{ app_distrib }}</em></span>.</p>
+            <p>Get Baïkal at <a href="http://baikal-server.com">http://baikal-server.com</a></p>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+            <h4>Services</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><span class="hidden-xs">Web Admin</span><span class="visible-xs">Admin</span></td>
+                        <td><span class="label label-success label-intext pull-right">On</span><p></p></td>
+                    </tr>
+                    <tr>
+                        <td>CalDAV</td>
+                        <td>
+                            {% if dav_caldav_enabled == true %}
+                            <span class="label label-success label-intext pull-right">On</span>
+                            {% else %}
+                            <span class="label label-danger label-intext pull-right">Off</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CardDAV</td>
+                        <td>
+                            {% if dav_carddav_enabled == true %}
+                            <span class="label label-success label-intext pull-right">On</span>
+                            {% else %}
+                            <span class="label label-danger label-intext pull-right">Off</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h4>License and credits</h4>
+            <p>Baïkal is open source software licensed under the terms of the GNU GPL v3.</p>
+            <p>Baïkal is based upon other open source projects.<br>Read the <a href="https://github.com/netgusto/Baikal2/blob/master/README.md" target="_blank">README.md</a> file to learn about that.</p>
+            <p>Baïkal is developed by <img src="data:image/png;base64,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" width="20" height="20" style="vertical-align: middle;"/> <a href="http://netgusto.com" target="_blank">Net Gusto</a>.</p>
+        </div>
+    </div>
+</section>
+
+<section id="statistics">
+    <h3>Statistics</h3>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <h4>Users</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Registered users</td>
+                        <td><span class="badge pull-right">{{ nbusers }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+            <h4>CalDAV</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Calendars</td>
+                        <td><span class="badge pull-right">{{ nbcalendars }}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Events</td>
+                        <td><span class="badge pull-right">{{ nbevents }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+            <h4>CardDAV</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Address books</td>
+                        <td><span class="badge pull-right">{{ nbaddressbooks }}</span></td>
+                    </tr>
+                    <tr>
+                        <td>Contacts</td>
+                        <td><span class="badge pull-right">{{ nbaddressbookcontacts }}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

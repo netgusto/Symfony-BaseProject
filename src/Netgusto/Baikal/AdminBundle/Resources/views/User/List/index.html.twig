@@ -1,0 +1,124 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Users" %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa fa-group"></i> Users</h1>
+</div>
+<p>&nbsp;</p>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p class="lead pull-left">Manage Baïkal users and their resources.</p>
+        </div>
+        <div class="col-4">
+            <p class="lead pull-right"><a class="btn btn-link" href="{{ path('netgusto_baikal_admin_user_form_new') }}"><i class="fa fa-user"></i> + Add user</a></p>
+        </div>
+    </div>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage|raw }}
+    </div>
+    {% endfor %}
+
+    <div class="userslist bk-stripedlist">
+
+        {% for user in users %}
+
+            {% set principal = user.getIdentityPrincipal() %}
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <p>
+                        <i class="lead fa fa-user"></i> {% if user.hasRole("ROLE_ADMIN") %}<i class="lead fa fa-star" style="color: #F24535;" title="Administrator"></i>{% endif %} <strong class="lead">{{ user.uiLabel() }}</strong><br>
+                        {% if principal %}
+                            {{ user.getUsername() }} <a href="mailto:{{ principal.getEmail() }}">&lt;{{ principal.getEmail() }}&gt;</a>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="visible-xs">
+                        <div class="btn-group btn-group-justified pull-right">
+
+                            {% if user.hasRole("ROLE_FRONTEND_USER") %}
+                            <a class="btn btn-sm btn-default" href="{{ path('netgusto_baikal_admin_user_calendar_list', { 'id' : user.id }) }}"><i class="fa fa-calendar"></i> <span class="hidden-xxs-portrait inline-block">Calendars</span></a>
+                            <a class="btn btn-sm btn-default" href="{{ path('netgusto_baikal_admin_user_addressbook_list', { 'id' : user.id }) }}"><i class="fa fa-book"></i> <span class="hidden-xxs-portrait inline-block">Contacts</span></a>
+                            {% else %}
+                            <a class="btn btn-sm btn-default btn-disabled" disabled href="#"><i class="fa fa-calendar"></i> <span class="hidden-xxs-portrait inline-block">Calendars</span></a>
+                            <a class="btn btn-sm btn-default btn-disabled" disabled href="#"><i class="fa fa-book"></i> <span class="hidden-xxs-portrait inline-block">Contacts</span></a>
+                            {% endif %}
+                            
+                            <a class="btn btn-sm btn-primary" href="{{ path('netgusto_baikal_admin_user_form_edit', { 'id' : user.id }) }}"><i class="fa fa-edit"></i> <span class="hidden-xxs-portrait inline-block">Edit</span></a>
+                            <a class="btn btn-sm btn-danger delete" href="{{ path('netgusto_baikal_admin_user_list_delete', { 'id' : user.id }) }}" data-username="{{ user.uiLabel() | escape() }}"><i class="fa fa-trash-o"></i> <span class="hidden-xxs-portrait inline-block">Delete</span></a>
+                        </div>
+                    </div>
+                    <nobr>
+                    <div class="visible-sm visible-md visible-lg">
+                        <div class="btn-group btn-group-justified pull-right">
+                            {% if user.hasRole("ROLE_FRONTEND_USER") %}
+                            <a class="btn btn-default" href="{{ path('netgusto_baikal_admin_user_calendar_list', { 'id' : user.id }) }}"><i class="fa fa-calendar"></i> Calendars</a>
+                            <a class="btn btn-default" href="{{ path('netgusto_baikal_admin_user_addressbook_list', { 'id' : user.id }) }}"><i class="fa fa-book"></i> Contacts</a>
+                            {% else %}
+                            <a class="btn btn-default btn-disabled" disabled href="#"><i class="fa fa-calendar"></i> Calendars</a>
+                            <a class="btn btn-default btn-disabled" disabled href="#"><i class="fa fa-book"></i> Contacts</a>
+                            {% endif %}
+                            <a class="btn btn-primary" href="{{ path('netgusto_baikal_admin_user_form_edit', { 'id' : user.id }) }}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-danger delete" href="{{ path('netgusto_baikal_admin_user_list_delete', { 'id' : user.id }) }}" data-username="{{ user.uiLabel() | escape() }}"><i class="fa fa-trash-o"></i> Delete</a>
+                        </div>
+                    </div>
+                    </nobr>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+
+<div class="visible-xs">visible-xs</div>
+<div class="visible-sm">visible-sm</div>
+<div class="visible-md">visible-md</div>
+<div class="visible-lg">visible-lg</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-delete-confirmation" role="dialog" aria-labelledby="Modal detele confirmation" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete user <i class="fa fa-user"></i> <span class="username">Username</span></h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete <strong><i class="fa fa-user"></i> <span class="username">Username</span></strong> and all it's data (calendars, contacts, ...).</p>
+                <p><strong>Careful ! This operation is destructive, and cannot be undone.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default btn-cancel" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-danger btn-execute">Delete user <strong><i class="fa fa-user"></i> <span class="username">Username</span></strong></a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}
+
+{% block js %}
+
+    $("a.delete").click(function(e) {
+
+        e.preventDefault();
+        var oButton = $(e.target);
+
+        $('#modal-delete-confirmation span.username').html(oButton.attr('data-username'));
+        $('#modal-delete-confirmation .btn-execute').attr('href', oButton.attr('href'));
+        $('#modal-delete-confirmation').modal();
+    });
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Addressbooks for " ~ user.getUsername() %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa fa-book"></i> Addressbooks for <i class="fa fa-user"></i> {{ user.uiLabel() }}</h1>
+</div>
+<p>&nbsp;</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p class="lead pull-left">Manage addressbooks for one particular user.</p>
+        </div>
+        <div class="col-4">
+            <p class="lead pull-right"><a class="btn btn-link" href="{{ path('netgusto_baikal_admin_addressbook_form_new', { 'user': user.id }) }}"><i class="fa fa-book"></i> + Add addressbook</a></p>
+        </div>
+    </div>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage|raw }}
+    </div>
+    {% endfor %}
+
+    <div class="addressbooklist bk-stripedlist">
+
+        {% for addressbook in addressbooks %}
+
+            {% set principal = user.getIdentityPrincipal() %}
+            {% set contacts = addressbook.getContacts() %}
+            {% set contactscount = contacts.count() %}
+
+            <div class="row">
+                <div class="col-md-9 col-lg-9">
+                    <p>
+                        <i class="lead fa fa-book"></i> <strong class="lead">{{ addressbook.getDisplayname() }}</strong><br>
+                        {% if addressbook.getDescription() %}
+                           {{ addressbook.getDescription() }} -
+                        {% endif %}
+                        
+                        {% if contactscount == 0 %}
+                            No contact yet
+                        {% elseif contactscount == 1 %}
+                            Only one contact in the addressbook
+                        {% else %}
+                            {{ contactscount }} contacts
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <nobr>
+                    <div class="visible-xs">
+                        <div class="btn-group btn-group-justified pull-right">
+                            <a class="btn btn-mini btn-default" href="{{ path('netgusto_baikal_admin_addressbook_view', { 'user' : user.id, 'addressbook' : addressbook.id }) }}"><i class="fa fa-eye"></i> View</a>
+                            <a class="btn btn-mini btn-primary" href="{{ path('netgusto_baikal_admin_addressbook_form_edit', { 'user' : user.id, 'addressbook' : addressbook.id }) }}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-mini btn-danger delete" href="{{ path('netgusto_baikal_admin_addressbook_list_delete', { 'user' : user.id, 'addressbook': addressbook.id }) }}" data-addressbookname="{{ addressbook.getDisplayname() | escape() }}"><i class="fa fa-trash-o"></i> Delete</a>
+                        </div>
+                    </div>
+
+                    <div class="visible-sm visible-md visible-lg">
+                        <div class="btn-group btn-group-justified pull-right">
+                            <a class="btn btn-mini btn-default" href="{{ path('netgusto_baikal_admin_addressbook_view', { 'user' : user.id, 'addressbook' : addressbook.id }) }}"><i class="fa fa-eye"></i> View</a>
+                            <a class="btn btn-primary" href="{{ path('netgusto_baikal_admin_addressbook_form_edit', { 'user' : user.id, 'addressbook' : addressbook.id }) }}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-danger delete" href="{{ path('netgusto_baikal_admin_addressbook_list_delete', { 'user' : user.id, 'addressbook': addressbook.id }) }}" data-addressbookname="{{ addressbook.getDisplayname() | escape() }}"><i class="fa fa-trash-o"></i> Delete</a>
+                        </div>
+                    </div>
+                    </nobr>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-delete-confirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete addressbook <i class="fa fa-book"></i> <span class="addressbookname">Addressbook name</span></h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete <strong><i class="fa fa-book"></i> <span class="addressbookname">Addressbook name</span></strong> and all it's data.</p>
+                <p><strong>Careful ! This operation is destructive, and cannot be undone.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-link btn-cancel" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-danger btn-execute">Delete <strong><i class="fa fa-book"></i> <span class="addressbookname">Addressbook name</span></strong></a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}
+
+{% block js %}
+
+    $("a.delete").click(function(e) {
+
+        e.preventDefault();
+        var oButton = $(e.target);
+
+        $('#modal-delete-confirmation span.addressbookname').html(oButton.attr('data-addressbookname'));
+        $('#modal-delete-confirmation .btn-execute').attr('href', oButton.attr('href'));
+        $('#modal-delete-confirmation').modal();
+    });
+
+{% endblock %}

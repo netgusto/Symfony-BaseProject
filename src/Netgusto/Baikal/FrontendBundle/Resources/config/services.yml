@@ -1,0 +1,10 @@
+parameters:
+    netgusto_baikal_frontend.access_denied_handler.class: Netgusto\Baikal\FrontendBundle\Service\AccessDeniedHandler
+
+services:
+    netgusto_baikal_frontend.access_denied_handler:
+        class: %netgusto_baikal_frontend.access_denied_handler.class%
+        arguments: [@http_kernel, @security.context, @router]
+        tags:
+            - { name: kernel.event_listener, event: security.kernel_response, method: handle }
+

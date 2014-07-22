@@ -1,0 +1,25 @@
+{% set user = app.security.getToken().getUser() %}
+{% embed 'NetgustoAdminLTEBundle:Page:component.admin.html.twig' %}
+    {% block pagetitle %}Baïkal Server{% endblock %}
+    
+    {% block brand %}
+        <a href="{{ path('netgusto_baikal_admin_dashboard') }}" class="logo">
+            <img id="baikallogo" class="hidden-xxs-portrait" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAABRCAMAAACwo5W+AAAAYFBMVEUAAABQT0/YFAlRRkfYFApOR0jZFAraFAqfKibbIhlPR0dKSkrZFQv////gFQpESEnYDQP37u5nQD67IRoFBQWSLyvhRD3Y2NimpqflaGL409IxMTHqi4dmZGN/f3/zsrAFVd+YAAAAC3RSTlMA+m1SRZ2YzCL52t7OuXsAAANFSURBVHjanZbZgqIwEEUbBUlYEgLNIpv//5dTIYm3I0QH74OtLYeqOgXqTyAsvtzS9HaJ2c+JxLeUCyGKgh54eov/F0sLglz08xToOwwU2M/orQCG0D9vbzGW/sWE9yJl7zkwjQ5okGFOFE1b51vqum3EJ/JZr6lzKQ2onxBqyYAX+7bGNsCFUFvz0FBcWC7XiFwHmQOtrew42KhozZFLX64e2YhAsxfDNU+ufCFNP5ejgo6TclWlzkBdgzz2E5sZaklYNJQ2/QJHshWajI+UilZKuQyqRIY1l5TNcgOxr2qWdeiB2arDuizRQm/dK/Tq7aK6l4EopfQjx0Y8p9WjfJ+t5GU/IlcfwIcGb7sRq678kHG/kBQj9ss00ULgNZomfT24IT2QbW7m7bjfLZGyWiLz2pypq+g45q3fgcRNk5yINCBx9HIi0oEi3kmddYG1V9vyZL/1LQf9V/VrpBx48aTaGRXEKvOAVZoZnVZIdVbV6G8F/9JWfa2MzuT2OPKCP3xu5kU32j1SOIObwmQ0Y1Rc+durbDf3Ch8DcGPtcHsG/3qpuO5YuzF24Mb2aip2XkXFKxLnOrV24MaVHDtuBkIeHb+7ZTg7cAM9KIeiUOPswI1/R/ZTtA7DGk390xG3IOxcBMjZ1Zh+t0xbMZgxduAGebiSi+bMbYFVODtwg8zPwXp8/ijLwQ5AzAk78AoOICv8VHz20fFebBzCcDN6JKHjU8rDYYiIIfUVLXh3n+f53vEKGLRC6gFbtW3lU9AKN0ep62If2GE88G4rZRs4J2e44PbJKUUgMdwcFHRfbQjsBN2IJt/SiJAduPE59zsHpGcn6KaW+AY/thMHOZCHdmIR5sKkiA+kCseBFHutcAMvjgMJQ7CzK9eCQNpd0R/uYyj3WtRH+Z9WhcbyYDQq0CrJMRB+3IbRVrPCyDF7bJqWKJl/iCS2bRqzR1bXupAEFY47jhC6r7L8i2R0kSffgAmB12/AK4EsOs9F7Ae9nuwUvZ7tlJJ94RQlzxc8P2ViKIg9oxTNnmoUSc42CvIsB/IsB/IsB/IsB7fZeyyDz5ewJHqzvgT7O4ECC6PZQZNvMcyaZBGgKEsw28ew61VXJuYaqPUPoNyueVYT/X8AAAAASUVORK5CYII=" height="40"/>
+            Baïkal Server
+        </a>
+    {% endblock %}
+
+    {% block leftmenu %}
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="{{ gravatar_avatar_url(user.email) }}" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>Hello, {{ user.username }}</p>
+
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        {{ adminlte_leftmenu_render('NetgustoBaikalAdminBundle:Builder:leftMenu') }}
+    {% endblock %}
+{% endembed %}

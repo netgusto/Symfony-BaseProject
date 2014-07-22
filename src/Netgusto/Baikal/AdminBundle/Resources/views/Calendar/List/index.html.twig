@@ -1,0 +1,111 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Calendars for " ~ user.uiLabel() %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa fa-calendar"></i> Calendars for <i class="fa fa-user"></i> {{ user.uiLabel() }}</h1>
+</div>
+<p>&nbsp;</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p class="lead pull-left">Manage calendars for one particular user.</p>
+        </div>
+        <div class="col-4">
+            <p class="lead pull-right"><a class="btn btn-link" href="{{ path('netgusto_baikal_admin_calendar_form_new', { 'user': user.id }) }}"><i class="fa fa-calendar"></i> + Add calendar</a></p>
+        </div>
+    </div>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage|raw }}
+    </div>
+    {% endfor %}
+
+    <div class="calendarlist bk-stripedlist">
+
+        {% for calendar in calendars %}
+
+            {% set principal = user.getIdentityPrincipal() %}
+            {% set events = calendar.getEvents() %}
+            {% set eventcount = events.count() %}
+
+            <div class="row">
+                <div class="col-md-9 col-lg-9">
+                    <p>
+                        <i class="lead fa fa-calendar"></i> <strong class="lead">{{ calendar.getDisplayname() }}</strong><br>
+                        {{ calendar.getDescription() }} - 
+                        {% if eventcount == 0 %}
+                            No event yet
+                        {% elseif eventcount == 1 %}
+                            Only one event in the calendar - Last modified {{ events[0].getLastmodifiedAsDateTime()|date('Y-m-d H:i:s') }}
+                        {% else %}
+                            {{ eventcount }} events - Last modified {{ events[0].getLastmodifiedAsDateTime()|date('Y-m-d H:i:s') }}
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <nobr>
+                    <div class="visible-xs">
+                        <div class="btn-group btn-group-justified pull-right">
+                            <a class="btn btn-mini btn-default" href="{{ path('netgusto_baikal_admin_calendar_view', { 'user' : user.id, 'calendar' : calendar.id }) }}"><i class="fa fa-eye"></i> View</a>
+                            <a class="btn btn-mini btn-primary" href="{{ path('netgusto_baikal_admin_calendar_form_edit', { 'user' : user.id, 'calendar' : calendar.id }) }}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-mini btn-danger delete" href="{{ path('netgusto_baikal_admin_calendar_list_delete', { 'user' : user.id, 'calendar': calendar.id }) }}" data-calendarname="{{ calendar.getDisplayname() | escape() }}"><i class="fa fa-trash-o"></i> Delete</a>
+                        </div>
+                    </div>
+
+                    <div class="visible-sm visible-md visible-lg">
+                        <div class="btn-group btn-group-justified pull-right">
+                            <a class="btn btn-mini btn-default" href="{{ path('netgusto_baikal_admin_calendar_view', { 'user' : user.id, 'calendar' : calendar.id }) }}"><i class="fa fa-eye"></i> View</a>
+                            <a class="btn btn-primary" href="{{ path('netgusto_baikal_admin_calendar_form_edit', { 'user' : user.id, 'calendar' : calendar.id }) }}"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="btn btn-danger delete" href="{{ path('netgusto_baikal_admin_calendar_list_delete', { 'user' : user.id, 'calendar': calendar.id }) }}" data-calendarname="{{ calendar.getDisplayname() | escape() }}"><i class="fa fa-trash-o"></i> Delete</a>
+                        </div>
+                    </div>
+                    </nobr>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal-delete-confirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete calendar <i class="fa fa-calendar"></i> <span class="calendarname">Calendar name</span></h4>
+            </div>
+            <div class="modal-body">
+                <p>You are about to delete <strong><i class="fa fa-calendar"></i> <span class="calendarname">Calendar name</span></strong> and all it's data.</p>
+                <p><strong>Careful ! This operation is destructive, and cannot be undone.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-link btn-cancel" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-danger btn-execute">Delete <strong><i class="fa fa-calendar"></i> <span class="calendarname">Calendar name</span></strong></a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock %}
+
+{% block js %}
+
+    $("a.delete").click(function(e) {
+
+        e.preventDefault();
+        var oButton = $(e.target);
+
+        $('#modal-delete-confirmation span.calendarname').html(oButton.attr('data-calendarname'));
+        $('#modal-delete-confirmation .btn-execute').attr('href', oButton.attr('href'));
+        $('#modal-delete-confirmation').modal();
+    });
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Settings" %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa fa-cogs"></i> Settings</h1>
+</div>
+
+<p>&nbsp;</p>
+
+<div class="container">
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ flashMessage|raw }}
+    </div>
+    {% endfor %}
+    
+    <form class="form-horizontal" action="" method="post" enctype="multipart/formdata">
+        <fieldset>
+
+            <legend style="line-height: 40px;">Editing Baïkal <i class="fa fa-cogs"></i> <strong>Settings</strong></legend>
+
+            <div class="form-group{% if form.servertimezone.vars.errors|length %} has-error{% endif %}">
+                {{ form_label(form.servertimezone, label|default(null), { 'label_attr': { 'class': 'col-sm-4 col-lg-2 control-label' } }) }}
+                <div class="col-sm-8 col-lg-4">
+                    {{ form_widget(form.servertimezone, { 'attr': { 'class': 'form-control' } }) }}
+                    {% if not form.servertimezone.vars.valid %}<span class="help-block">{{ form.servertimezone.vars.errors[0].getMessage() }}</span>{% endif %}
+                </div>
+            </div>
+
+            <div class="form-group{% if form.enabledservices.vars.errors|length %} has-error{% endif %}">
+                {{ form_label(form.enabledservices, label|default(null), { 'label_attr': { 'class': 'col-sm-4 col-lg-2 control-label' } }) }}
+                <div class="col-sm-8 col-lg-4">
+                    {% for name, choice in form.enabledservices %}
+                        {{ form_widget(choice) }} {{ form_label(choice, label|default(null)) }}<br />
+                    {% endfor %}
+
+                    {% if not form.enabledservices.vars.valid %}<span class="help-block">{{ form.enabledservices.vars.errors[0].getMessage() }}</span>{% endif %}
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+
+            <div class="form-group">
+
+                <div class="col-sm-offset-4 col-sm-2 col-lg-offset-2 col-lg-1">
+                    <button type="submit" class="btn btn-primary btn-large">Update <i class="fa fa-cogs"></i> Settings</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

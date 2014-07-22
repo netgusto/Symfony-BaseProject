@@ -1,0 +1,11 @@
+netgusto_baikal_dav_services_caldav:
+    pattern:  /cal/{slug}
+    defaults: { _controller: NetgustoBaikalDavServicesBundle:Caldav:index, slug: null }
+    requirements:
+        slug: ".*"
+
+netgusto_baikal_dav_services_carddav:
+    pattern:  /card/{slug}
+    defaults: { _controller: NetgustoBaikalDavServicesBundle:Carddav:index, slug: null }
+    requirements:
+        slug: ".*"

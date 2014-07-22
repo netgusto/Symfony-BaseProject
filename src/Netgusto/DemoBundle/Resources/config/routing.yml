@@ -2,6 +2,6 @@ netgusto_demo_homepage:
     pattern:  /
     defaults: { _controller: NetgustoDemoBundle:Front:index }
 
-netgusto_demo_subpage:
-    pattern:  /subpage
-    defaults: { _controller: NetgustoDemoBundle:Front:index }
+netgusto_demo_admin:
+    resource: @NetgustoAdminLTEBundle/Resources/config/routing.yml
+    prefix:  /admin

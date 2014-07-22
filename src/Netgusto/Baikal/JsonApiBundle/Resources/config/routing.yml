@@ -1,0 +1,3 @@
+netgusto_baikal_json_api_calendar_fetchrange:
+    pattern:  /calendar/{calendar}/fetchrange
+    defaults: { _controller: NetgustoBaikalJsonApiBundle:Calendar:fetchrange }

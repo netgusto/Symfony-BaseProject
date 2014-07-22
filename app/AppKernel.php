@@ -22,6 +22,11 @@ class AppKernel extends Kernel
             new Netgusto\AdminLTEBundle\NetgustoAdminLTEBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+
+            new Netgusto\Baikal\CoreBundle\NetgustoBaikalCoreBundle(),
+            new Netgusto\Baikal\DavServicesBundle\NetgustoBaikalDavServicesBundle(),
+            new Netgusto\Baikal\AdminBundle\NetgustoBaikalAdminBundle(),
+            new Netgusto\Baikal\FrontendBundle\NetgustoBaikalFrontendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

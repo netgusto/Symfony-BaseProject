@@ -1,0 +1,54 @@
+netgusto_baikal_frontend_davrerouting:
+    pattern: /login
+    defaults: { _controller: NetgustoBaikalFrontendBundle:DavRerouting:propfind }
+    requirements:
+        _method: propfind
+
+netgusto_baikal_frontend_homepage:
+    pattern:  /
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Default:index }
+
+netgusto_baikal_frontend_calendar_list:
+    pattern:  /calendars
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Calendar/List:index }
+
+netgusto_baikal_frontend_calendar_list_delete:
+    pattern:  /calendar/{calendar}/delete
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Calendar/List:delete }
+
+netgusto_baikal_frontend_calendar_form_new:
+    pattern:  /calendar/new
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Calendar/Form:new }
+
+netgusto_baikal_frontend_calendar_form_edit:
+    pattern:  /calendar/{calendar}
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Calendar/Form:edit }
+
+netgusto_baikal_frontend_calendar_view:
+    pattern:  /calendar/{calendar}/view
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Calendar/View:index }
+
+
+netgusto_baikal_frontend_contact_list:
+    pattern:  /contacts
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Contact:list }
+
+netgusto_baikal_frontend_profile:
+    pattern:  /profile
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Profile:index }
+
+netgusto_baikal_frontend_wellknown:
+    pattern:  /.well-known/{service}
+    defaults: { _controller: NetgustoBaikalFrontendBundle:WellKnown:index }
+
+netgusto_baikal_frontend_login:
+    pattern: /login
+    defaults: { _controller: NetgustoBaikalFrontendBundle:Auth:loginform }
+
+netgusto_baikal_frontend_login_check:
+    pattern: /login_check
+    # no controller, symfony intercepts this
+
+netgusto_baikal_frontend_logout:
+    pattern: /logout
+    # no controller, symfony intercepts this

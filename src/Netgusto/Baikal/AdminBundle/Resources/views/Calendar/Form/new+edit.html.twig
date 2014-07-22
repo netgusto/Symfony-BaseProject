@@ -1,0 +1,80 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% if calendar is defined %}
+    {% set pagetitle = "Editing calendar '" ~ calendar.displayName() ~ "'" %}
+{% else %}
+    {% set pagetitle = "New calendar" %}
+{% endif %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1><i class="fa fa-calendar"></i> Calendar for <i class="fa fa-user"></i> {{ user.uiLabel() }}</h1>
+</div>
+
+<p>&nbsp;</p>
+
+<div class="container">
+    <form class="form-horizontal" action="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}" method="post" {{ form_enctype(form) }} role="form" novalidate>
+
+        <fieldset>
+
+            <div class="row">
+                <div class="col-12">
+                    {% if calendar is defined %}
+                    <legend style="line-height: 40px;">Editing <i class="fa fa-calendar"></i> {{ calendar.displayName() }}</legend>
+                    {% else %}
+                    <legend style="line-height: 40px;">Creating <i class="fa fa-calendar"></i> calendar</legend>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group{% if form.displayname.vars.errors|length %} has-error{% endif %}">
+                {{ form_label(form.displayname, label|default(null), { 'label_attr': { 'class': 'col-sm-4 col-lg-2 control-label' } }) }}
+                <div class="col-sm-8 col-lg-4">
+                    {{ form_widget(form.displayname, { 'attr': { 'class': 'form-control' } }) }}
+                    {% if not form.displayname.vars.valid %}<span class="help-block">{{ form.displayname.vars.errors[0].getMessage() }}</span>{% endif %}
+                </div>
+            </div>
+
+            <div class="form-group{% if form.description.vars.errors|length %} has-error{% endif %}">
+                {{ form_label(form.description, label|default(null), { 'label_attr': { 'class': 'col-sm-4 col-lg-2 control-label' } }) }}
+                <div class="col-sm-8 col-lg-4">
+                    {{ form_widget(form.description, { 'attr': { 'class': 'form-control' } }) }}
+                    {% if not form.description.vars.valid %}<span class="help-block">{{ form.description.vars.errors[0].getMessage() }}</span>{% endif %}
+                </div>
+            </div>
+
+            <div class="form-group{% if form.todos.vars.errors|length %} has-error{% endif %}">
+                {{ form_label(form.todos, label|default(null), { 'label_attr': { 'class': 'col-sm-4 col-lg-2 control-label' } }) }}
+                <div class="col-sm-8 col-lg-4">
+                    {{ form_widget(form.todos, { 'attr': { 'class': 'form-control' } }) }}
+                    {% if not form.todos.vars.valid %}<span class="help-block">{{ form.todos.vars.errors[0].getMessage() }}</span>{% endif %}
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-2 col-lg-offset-2 col-lg-1">
+                    <a href="{{ path('netgusto_baikal_admin_user_calendar_list', { 'id' : user.id }) }}" class="btn btn-link btn-large">Cancel</a>
+                </div>
+
+                <div class="col-sm-2 col-lg-1">
+                    {% if calendar is defined %}
+                    <button type="submit" class="btn btn-primary btn-large">Update calendar</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary btn-large">Create calendar</button>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    {% if events is defined %}
+    {{ events|raw }}
+    {% endif %}
+
+</div>
+
+{% endblock %}

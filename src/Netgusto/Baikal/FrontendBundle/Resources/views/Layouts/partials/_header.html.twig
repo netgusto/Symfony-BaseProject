@@ -1,0 +1,64 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            {% if app.user %}
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            {% endif %}
+            <a href="{{ path("netgusto_baikal_frontend_homepage") }}"><img id="baikallogo" src="{{ asset('img/baikal-logo.png') }}" width="28" height="40" /></a><a class="navbar-brand" href="{{ path("netgusto_baikal_frontend_homepage") }}">Baïkal Server</a>
+        </div>
+
+
+        {% if app.user %}
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+
+                <div class="visible-xs">
+                    <div class="pull-left" style="width: 40%">
+                        {{ knp_menu_render('NetgustoBaikalFrontendBundle:Builder:userMenu', {'class': 'navbar-nav', 'currentClass': 'active'}) }}
+                    </div>
+
+                    <div class="pull-right" style="width: 50%">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ path('netgusto_baikal_frontend_logout') }}"><i class="fa fa-power-off"></i> Signout</a></li>
+
+                            {% if app.user.id is defined %}
+                            <li class="divider"></li>
+                            <li><a href="{{ path('netgusto_baikal_frontend_profile') }}"><i class="fa fa-smile-o"></i> My profile</a></li>
+                            {% endif %}
+                            
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_STATIC_ADMIN') %}
+                                <li><a href="{{ path('netgusto_baikal_admin_homepage') }}"><i class="fa fa-sign-in"></i> Switch to web admin</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="visible-sm visible-md visible-lg">
+                    {{ knp_menu_render('NetgustoBaikalFrontendBundle:Builder:userMenu', {'class': 'navbar-nav', 'currentClass': 'active'}) }}
+
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.getUsername() }} <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('netgusto_baikal_frontend_logout') }}"><i class="fa fa-power-off"></i> Signout</a></li>
+
+                                {% if app.user.id is defined %}
+                                <li class="divider"></li>
+                                <li><a href="{{ path('netgusto_baikal_frontend_profile') }}"><i class="fa fa-smile-o"></i> My profile</a></li>
+                                {% endif %}
+                                
+                                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_STATIC_ADMIN') %}
+                                    <li><a href="{{ path('netgusto_baikal_admin_homepage') }}"><i class="fa fa-sign-in"></i> Switch to web admin</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        {% endif %}
+    </div>
+</div>

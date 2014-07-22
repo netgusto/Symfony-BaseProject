@@ -1,0 +1,162 @@
+.bk-stripedlist .row {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.bk-stripedlist .row:nth-child(odd) {
+    background-color: #F9F9F9;
+}
+
+.bk-stripedlist .row:nth-child(even) {
+    background-color: #FEFEFE;
+}
+
+.bk-stripedlist .btn-group {
+    margin-top: 0.3em;
+}
+
+
+.visible-xxs,
+.visible-xxs-portrait,
+.visible-xxs-landscape {
+    display: none !important;
+    &.inline-block {
+        display: none !important;
+    }
+}
+
+.hidden-xxs,
+.hidden-xxs-portrait,
+.hidden-xxs-landscape {
+    display: block !important;
+    &.inline-block {
+        display: inline-block !important;
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+    and (max-width : 480px) {
+
+    .visible-xxs,
+    .visible-xxs-portrait,
+    .visible-xxs-landscape {
+        display: block !important;
+        &.inline-block {
+            display: inline-block !important;
+        }
+    }
+
+    .hidden-xxs,
+    .hidden-xxs-portrait,
+    .hidden-xxs-landscape {
+        display: none !important;
+        &.inline-block {
+            display: none !important;
+        }
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+    and (max-width : 320px) {
+    .visible-xxs,
+    .visible-xxs-landscape {
+        display: block !important;
+        &.inline-block {
+            display: inline-block !important;
+        }
+    }
+
+    .hidden-xxs,
+    .hidden-xxs-landscape {
+        display: none !important;
+        &.inline-block {
+            display: none !important;
+        }
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+    and (min-width : 321px)
+    and (max-width : 480px) {
+    .visible-xxs,
+    .visible-xxs-portrait {
+        display: block !important;
+        &.inline-block {
+            display: inline-block !important;
+        }
+    }
+
+    .hidden-xxs,
+    .hidden-xxs-portrait {
+        display: none !important;
+        &.inline-block {
+            display: none !important;
+        }
+    }
+}
+
+/*****************************************************************************/
+
+
+.dropdown-menu li i {
+    display: inline-block;
+    width: 1.4em;
+}
+
+#baikallogo {
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+}
+
+@media (max-width: 767px) {
+    #baikallogo {
+        margin-left: 5px;
+    }
+
+    .navbar-brand {
+        padding-left: 5px;
+    }
+}
+
+.navbar-brand {
+    color: #555555;
+    font-size: 1.8em;
+    max-width: 400px;   /* Instead of 200px by default in bootstrap 3 */
+
+    span {
+        color: #F24535;
+    }
+}
+
+.page-header {
+    margin: 18px 0 0 0;
+    padding-bottom: 0;
+}
+
+.page-header i:first-child {
+    color: #4F4F4F;
+    font-size: 50px;
+    text-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+}
+
+.modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+.modal-footer {
+    margin-top: 0;
+}
+
+.modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+.top-buffer {
+    margin-top:20px;
+}

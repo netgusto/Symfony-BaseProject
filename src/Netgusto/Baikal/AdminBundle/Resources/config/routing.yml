@@ -1,0 +1,92 @@
+# Auth
+
+netgusto_baikal_admin_login:
+    pattern: /login
+    defaults: { _controller: NetgustoBaikalAdminBundle:Auth:loginform }
+
+netgusto_baikal_admin_login_check:
+    pattern: /login_check
+    # no controller, symfony intercepts this
+
+netgusto_baikal_admin_logout:
+    pattern: /logout
+    # no controller, symfony intercepts this
+
+# Settings
+netgusto_baikal_admin_settings:
+    pattern:  /settings
+    defaults: { _controller: NetgustoBaikalAdminBundle:Settings:index }
+
+# Home
+netgusto_baikal_admin_homepage:
+    pattern:  /
+    defaults: { _controller: NetgustoBaikalAdminBundle:Dashboard:index }
+
+netgusto_baikal_admin_dashboard:
+    pattern:  /
+    defaults: { _controller: NetgustoBaikalAdminBundle:Dashboard:index }
+
+# User
+netgusto_baikal_admin_user_list:
+    pattern:  /users
+    defaults: { _controller: NetgustoBaikalAdminBundle:User/List:index }
+
+netgusto_baikal_admin_user_form_new:
+    pattern:  /user/new
+    defaults: { _controller: NetgustoBaikalAdminBundle:User/Form:new }
+
+netgusto_baikal_admin_user_form_edit:
+    pattern:  /user/{id}/edit
+    defaults: { _controller: NetgustoBaikalAdminBundle:User/Form:edit }
+
+netgusto_baikal_admin_user_list_delete:
+    pattern:  /user/{id}/delete
+    defaults: { _controller: NetgustoBaikalAdminBundle:User/List:delete }
+
+netgusto_baikal_admin_user_calendar_list:
+    pattern:  /user/{id}/calendars
+    defaults: { _controller: NetgustoBaikalAdminBundle:Calendar/List:index }
+
+# Calendar
+netgusto_baikal_admin_calendar_form_new:
+    pattern:  /user/{user}/calendar/new
+    defaults: { _controller: NetgustoBaikalAdminBundle:Calendar/Form:new }
+
+netgusto_baikal_admin_calendar_form_edit:
+    pattern:  /user/{user}/calendar/{calendar}
+    defaults: { _controller: NetgustoBaikalAdminBundle:Calendar/Form:edit }
+
+netgusto_baikal_admin_calendar_list_delete:
+    pattern:  /user/{user}/calendar/{calendar}/delete
+    defaults: { _controller: NetgustoBaikalAdminBundle:Calendar/List:delete }
+
+netgusto_baikal_admin_calendar_view:
+    pattern:  /user/{user}/calendar/{calendar}/view
+    defaults: { _controller: NetgustoBaikalAdminBundle:Calendar/View:index }
+
+# Addressbook
+netgusto_baikal_admin_user_addressbook_list:
+    pattern:  /user/{id}/addressbooks
+    defaults: { _controller: NetgustoBaikalAdminBundle:Addressbook/List:index }
+
+netgusto_baikal_admin_addressbook_form_new:
+    pattern:  /user/{user}/addressbooks/new
+    defaults: { _controller: NetgustoBaikalAdminBundle:Addressbook/Form:new }
+
+netgusto_baikal_admin_addressbook_form_edit:
+    pattern:  /user/{user}/addressbooks/{addressbook}
+    defaults: { _controller: NetgustoBaikalAdminBundle:Addressbook/Form:edit }
+
+netgusto_baikal_admin_addressbook_list_delete:
+    pattern:  /user/{user}/addressbooks/{addressbook}/delete
+    defaults: { _controller: NetgustoBaikalAdminBundle:Addressbook/List:delete }
+
+netgusto_baikal_admin_addressbook_view:
+    pattern:  /user/{user}/addressbook/{addressbook}/view
+    defaults: { _controller: NetgustoBaikalAdminBundle:Addressbook/View:index }
+
+
+# Todolist
+netgusto_baikal_admin_user_todolist_list:
+    pattern:  /user/{id}/todolists
+    defaults: { _controller: NetgustoBaikalAdminBundle:Todolist/List:index }

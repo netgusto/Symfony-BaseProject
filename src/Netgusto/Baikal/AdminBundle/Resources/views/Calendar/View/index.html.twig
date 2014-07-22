@@ -1,0 +1,53 @@
+{% extends "NetgustoBaikalAdminBundle:Layouts:standard.html.twig" %}
+
+{% set pagetitle = "Calendar " ~ calendar.getDisplayname() ~ " of " ~ user.uiLabel() %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/fullcalendar.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa fa-calendar"></i> Calendar {{ calendar.getDisplayname() }} of <i class="fa fa-user"></i> {{ user.uiLabel() }}</h1>
+</div>
+<p>&nbsp;</p>
+
+<div class="container">
+
+    <div id='calendar'></div>
+
+</div><!-- /.container -->
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('js/fullcalendar.js') }}"></script>
+{% endblock %}
+
+{% block js %}
+
+    $('#calendar').fullCalendar({
+        weekMode: 'variable',
+        weekNumbers: false,
+        aspectRatio: 1.5,
+        timeFormat: 'H:mm',
+        header: {
+            left: 'month,agendaWeek,agendaDay',
+            center: 'title',
+            right: 'prev,next today'
+        },
+        editable: false,
+        eventSources: [
+
+            {
+                url: '{{ path('netgusto_baikal_json_api_calendar_fetchrange', { 'calendar' : calendar.id }) }}',
+                type: 'GET',
+                cache: false,
+                error: function() {
+                    alert('there was an error while fetching events!');
+                }
+            }
+        ]
+    });
+
+{% endblock %}

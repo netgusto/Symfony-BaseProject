@@ -2,6 +2,6 @@ netgusto_demo:
     resource: "@NetgustoDemoBundle/Resources/config/routing.yml"
     prefix:   /
 
-netgusto_admin:
-    resource: "@NetgustoAdminLTEBundle/Resources/config/routing.yml"
+netgusto_baikal_admin:
+    resource: "@NetgustoBaikalAdminBundle/Resources/config/routing.yml"
     prefix:   /admin

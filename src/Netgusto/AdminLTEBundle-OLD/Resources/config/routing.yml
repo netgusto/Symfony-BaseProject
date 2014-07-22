@@ -1,3 +1,0 @@
-netgusto_admin_lte_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: NetgustoAdminLTEBundle:Default:index }

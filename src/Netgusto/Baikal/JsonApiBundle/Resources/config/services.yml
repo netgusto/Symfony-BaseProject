@@ -1,0 +1,7 @@
+parameters:
+#    netgusto_baikal_json_api.example.class: Netgusto\Baikal\JsonApiBundle\Example
+
+services:
+#    netgusto_baikal_json_api.example:
+#        class: %netgusto_baikal_json_api.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
